@@ -33,7 +33,7 @@ public class UserService {
         if (!BPwdEncoderUtil.matches(password, user.getPassword())) {
             throw new UserLoginException("error password");
         }
-        JWT jwt = client.getToken("Basic dXN1cilzZXJ2aWNlOjEyMzQINg== ", "password", username, password);
+        JWT jwt = client.getToken("Basic U2FtcGxlQ2xpZW50SWQ6c2VjcmV0", "password", username, password);
         if (jwt == null) {
             throw new UserLoginException("error internal");
         }

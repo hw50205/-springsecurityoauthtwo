@@ -1,6 +1,5 @@
 package com.example.userservice.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,23 +15,19 @@ import java.io.IOException;
 @Configuration
 public class JwtConfig {
 
-    @Autowired
-    JwtAccessTokenConverter jwtAccessTokenConverter;
-
     @Bean
     @Qualifier("tokenStore")
-    public TokenStore tokenStore(){
-        return new JwtTokenStore(jwtAccessTokenConverter);
+    public TokenStore tokenStore() {
+        return new JwtTokenStore(jwtTokenEnhancer());
     }
 
-    @Bean
-    protected  JwtAccessTokenConverter jwtTokenEnhancer(){
-        JwtAccessTokenConverter converter=new JwtAccessTokenConverter();
-        Resource resource=new ClassPathResource("public.cert");
+    protected JwtAccessTokenConverter jwtTokenEnhancer() {
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        Resource resource = new ClassPathResource("public.cert");
         String publicKey;
-        try{
-            publicKey=new String(FileCopyUtils.copyToByteArray(resource.getInputStream()));
-        }catch (IOException e){
+        try {
+            publicKey = new String(FileCopyUtils.copyToByteArray(resource.getInputStream()));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
         converter.setVerifierKey(publicKey);

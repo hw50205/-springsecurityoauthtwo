@@ -7,10 +7,12 @@ public class BPwdEncoderUtil {
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     public static String BCryptPassword(String password) {
-        return encoder.encode(password);
+        return password;
+//        return encoder.encode(password);
     }
 
-    public static boolean matches(CharSequence rawPassword, String encodedPassword) {
-        return encoder.matches(rawPassword, encodedPassword);
+    public static boolean matches(String rawPassword, String encodedPassword) {
+        return rawPassword.equals(encodedPassword);
+//        return encoder.matches(rawPassword, encodedPassword);
     }
 }
