@@ -21,8 +21,12 @@ public class JwtConfig {
         return new JwtTokenStore(jwtTokenEnhancer());
     }
 
+    @Bean
     protected JwtAccessTokenConverter jwtTokenEnhancer() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+//        对称解密
+//        converter.setSigningKey("123");
+//        非对称解密
         Resource resource = new ClassPathResource("public.cert");
         String publicKey;
         try {
@@ -33,4 +37,5 @@ public class JwtConfig {
         converter.setVerifierKey(publicKey);
         return converter;
     }
+
 }
