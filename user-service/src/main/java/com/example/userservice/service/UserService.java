@@ -21,7 +21,7 @@ public class UserService {
     public User insertUser(String username, String password) {
         User user = new User();
         user.setUsername(username);
-        user.setPassword(password);
+        user.setPassword(BPwdEncoderUtil.BCryptPassword(password));
         return userRepository.save(user);
     }
 

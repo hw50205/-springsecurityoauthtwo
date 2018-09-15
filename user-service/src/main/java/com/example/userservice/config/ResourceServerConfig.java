@@ -11,6 +11,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 @EnableResourceServer
 @Configuration
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
+
     @Autowired
     TokenStore tokenStore;
 
