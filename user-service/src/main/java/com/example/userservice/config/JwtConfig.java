@@ -1,5 +1,6 @@
 package com.example.userservice.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,10 +16,13 @@ import java.io.IOException;
 @Configuration
 public class JwtConfig {
 
+    @Autowired
+    JwtAccessTokenConverter jwtAccessTokenConverter;
+
     @Bean
     @Qualifier("tokenStore")
     public TokenStore tokenStore() {
-        return new JwtTokenStore(jwtTokenEnhancer());
+        return new JwtTokenStore(jwtAccessTokenConverter);
     }
 
     @Bean
