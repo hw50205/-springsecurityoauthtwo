@@ -47,10 +47,10 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     protected JwtAccessTokenConverter jwtTokenEnhancer() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
 //        对称加密
-        converter.setSigningKey("123");
+//        converter.setSigningKey("123");
 //        非对称加密
-//        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("fzp-jwt.jks"), "fzp123".toCharArray());
-//        converter.setKeyPair(keyStoreKeyFactory.getKeyPair("fzp-jwt"));
+        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("fzp-jwt.jks"), "fzp123".toCharArray());
+        converter.setKeyPair(keyStoreKeyFactory.getKeyPair("fzp-jwt"));
         return converter;
     }
 }

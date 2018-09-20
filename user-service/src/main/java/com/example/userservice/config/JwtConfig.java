@@ -29,16 +29,16 @@ public class JwtConfig {
     protected JwtAccessTokenConverter jwtTokenEnhancer() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
 //        对称解密
-        converter.setSigningKey("123");
+//        converter.setSigningKey("123");
 //        非对称解密
-//        Resource resource = new ClassPathResource("public.cert");
-//        String publicKey;
-//        try {
-//            publicKey = new String(FileCopyUtils.copyToByteArray(resource.getInputStream()));
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        converter.setVerifierKey(publicKey);
+        Resource resource = new ClassPathResource("public.cert");
+        String publicKey;
+        try {
+            publicKey = new String(FileCopyUtils.copyToByteArray(resource.getInputStream()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        converter.setVerifierKey(publicKey);
         return converter;
     }
 
